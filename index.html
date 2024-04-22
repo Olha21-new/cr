@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Курсовий</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap"
+    />
+    <!--link rel="icon" type="image/png" href="/assets/favicon.png" sizes="16x16"-->
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16">
+  
+
+  
+  
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Курсовий</h1>
+    </header>
+    <main>
+      <ul class="button-flex">
+        <li data-tab-target="#range" class="tab-button active">Проміжок Часу</li>
+        <li data-tab-target="#holidays" class="tab-button">Святкові Дні</li>
+      </ul>
+
+      <div class="tabs-content">
+        <!--Tab 1-->
+        <div id="range" data-tab-content class="active">
+           <!--Inputs tab 1-->
+           <h2>Вибір дати</h2>
+
+          <div class="input-date__wrapper">
+            <div class="input-date">
+             <label>Початкова Дата</label>
+             <input type="date"  id="startDate"/>
+           </div>
+           <div class="input-date">
+             <label>Кінцева Дата</label>
+             <input type="date"  id="endDate" disabled/>
+           </div>
+            <div class="time-span">
+              <button class="button" data-preset="week">
+                Week
+              </button>
+              <button class="button" data-preset="month">
+                Month
+              </button>
+            </div>
+          
+              <div class="input-date">
+              <label>Оберіть Будні/Вихідні</label>
+              <select name="selectDays" id="selectDays">
+               <option value="all">Всі дні</option>
+               <option value="weekdays">Будні дні</option>
+               <option value="weekends">Вихідні дні</option>
+              </select>
+             </div>
+
+              <div class="input-date" ><label>Оберіть Одиниці Вимірювання</label>
+               <select name="selectUnits" id="selectUnits">
+               <option value="days">Порахувати кількість днів</option>
+               <option value="hours">Порахувати кількість годин</option>
+               <option value="minutes">Порахувати кількість хвилин</option>
+               <option value="seconds">Порахувати кількість секунд</option>
+               </select>
+              </div>
+            
+            <div class="count__button-wrapper">
+              <button class="count__button""">Обчислити</button>
+            </div>
+          </div>
+          <!--Results block-->
+          <div class="results">
+            <h2>Результати</h2>
+            <ul id="resultsTable" class="result-history">
+                 <!--<li class="result-history__list">Тут буде результат</li>    -->         
+          </div>
+        </div>
+        <!--Tab 2-->
+        <div id="holidays" data-tab-content>
+           <!--Inputs tab 2-->
+           <div class="input-date__wrapper">
+            <div class="input-date">
+             <label>Вибір країни</label>
+              <select name="selectCountry" id="selectCountry" >
+               <option value="Country">Select</option>
+              </select>
+              </div>
+
+              <div class="input-date">
+               <label>Вибір року</label>
+               <select name="selectYear" id="selectYear" >
+                <option value="Year">Select</option>
+               </select>
+             </div>
+             <div class="holidays__button-wrapper">
+              <button class="holidays__button">Показати</button>
+            </div>  
+           </div>
+           <!--Results block-->
+          <div class="results">
+            <div class="result-title">
+              <h2>Результати</h2>
+               <div><button id="sortByDateButton"> Посортувати </button></div>
+              
+            </div>
+            <ul class="result-history--holidays">   
+            
+            <div class="result-title">
+              <h3>Дата</h3><h3>Назва свята</h3>
+            </div>
+                    
+          </div>
+          </div>
+        </div>
+      </div>
+    </main>
+   <script src="./js/index.js " type="module"></script>
+
+  </body>
+</html>
