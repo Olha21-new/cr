@@ -38,6 +38,8 @@ endDateInput.addEventListener("input", () => {
   if (endDateValue < startDateValue) {
     endDateInput.value = startDateInput.value;
   }
+
+  countButton.removeAttribute("disabled");
 });
 
 presetButtons.forEach((button) => {
