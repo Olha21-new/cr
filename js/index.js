@@ -19,22 +19,25 @@ displayResultsList();
 startDateInput.addEventListener("input", () => {
   const startDateValue = new Date(startDateInput.value);
   const endDateValue = new Date(endDateInput.value);
-  
+
+  endDateInput.min = startDateInput.value;
+
   if (startDateValue > endDateValue) {
-    startDateInput.value = endDateInput.value; // Set start date to end date
+    startDateInput.value = endDateInput.value;
   }
-  
+
   endDateInput.removeAttribute("disabled");
 });
 
-startDateInput.addEventListener("input", () => {
-  const startDateValue = startDateInput.value;
-  endDateInput.min = startDateValue;
-});
-
 endDateInput.addEventListener("input", () => {
+  const startDateValue = new Date(startDateInput.value);
   const endDateValue = new Date(endDateInput.value);
-  console.log(endDateValue);
+
+  startDateInput.max = endDateInput.value;
+
+  if (endDateValue < startDateValue) {
+    endDateInput.value = startDateInput.value;
+  }
 });
 
 presetButtons.forEach((button) => {
