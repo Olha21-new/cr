@@ -210,13 +210,15 @@ const displayHolidaysList = (holidays, sortOrder = "asc") => {
     holidays.sort((a, b) => new Date(b.date.iso) - new Date(a.date.iso));
   }
 
-  if (holidays && holidays.length > 0) {
+ if (holidays && holidays.length > 0) {
     holidays.forEach((holiday) => {
       const listItem = document.createElement("li");
       listItem.classList.add("result-history--holidays-list");
 
+      const date = new Date(holiday.date.iso);
+      const dateString = date.toISOString().split("T")[0];
       const dateSpan = document.createElement("span");
-      dateSpan.textContent = holiday.date.iso;
+      dateSpan.textContent = dateString;
       listItem.appendChild(dateSpan);
 
       const nameSpan = document.createElement("span");
