@@ -186,6 +186,15 @@ li {
   margin-top: 1.5rem;
 }
 
+.count__button[disabled] {
+    cursor: auto;
+}
+
+.count__button:not([disabled]) {
+    cursor: pointer;
+}
+
+
 @media screen and (max-width: 600px) {
   .tabs-content {
     padding: 1.5rem;
