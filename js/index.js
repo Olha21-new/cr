@@ -18,8 +18,13 @@ displayResultsList();
 // Event functions tab 1
 startDateInput.addEventListener("input", () => {
   const startDateValue = new Date(startDateInput.value);
+  const endDateValue = new Date(endDateInput.value);
+  
+  if (startDateValue > endDateValue) {
+    startDateInput.value = endDateInput.value; // Set start date to end date
+  }
+  
   endDateInput.removeAttribute("disabled");
-  console.log(startDateValue);
 });
 
 startDateInput.addEventListener("input", () => {
