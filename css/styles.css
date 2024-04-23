@@ -188,10 +188,14 @@ li {
 
 .count__button[disabled] {
     cursor: auto;
+    color: #333;
+
 }
 
 .count__button:not([disabled]) {
     cursor: pointer;
+    color: var(--primary);
+
 }
 
 
