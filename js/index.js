@@ -183,9 +183,15 @@ countButton.addEventListener("click", calculateTimeInterval);
 
 function storeResult(resultObject) {
   let results = JSON.parse(localStorage.getItem("results")) || [];
+
+  if (results.length >= 10) {
+    results.shift();
+  }
+
   results.push(resultObject);
   localStorage.setItem("results", JSON.stringify(results));
 }
+
 
 // Tab 2
 import { getCountries, getHolidays } from "./apiModule.js";
