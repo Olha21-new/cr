@@ -1,7 +1,12 @@
 "use strict";
 
 import { initializeTabs } from "./tabs.js";
+import { storeData, retrieveData } from "./storageModule.js";
+import { displayResultsList } from "./resultsModule.js";
+
 initializeTabs();
+displayResultsList();
+
 
 // DOM variables tab 1
 const startDateInput = document.getElementById("startDate");
@@ -12,8 +17,6 @@ const resultsList = document.querySelector(".result-history");
 const daySelect = document.getElementById("selectDays");
 const timeUnitSelect = document.getElementById("selectUnits");
 
-import { displayResultsList } from "./resultsModule.js";
-displayResultsList();
 
 // Event functions tab 1
 startDateInput.addEventListener("input", () => {
@@ -120,6 +123,7 @@ function calculateTimeInterval() {
     default:
       result = "Invalid time unit";
   }
+  
 
   function isWeekend(date) {
     const dayOfWeek = date.getDay();
@@ -162,6 +166,16 @@ function calculateTimeInterval() {
   li.textContent = `${startDateInput.value} - ${endDateInput.value}: ${positiveResult} ${timeUnit}`;
   resultsList.append(li);
 
+  function storeResult(resultObject) {
+  let results = retrieveData("results") || [];
+
+  if (results.length >= 10) {
+    results.shift();
+  }
+
+  results.push(resultObject);
+  storeData("results", results);
+}
   const resultObject = {
     startDate: startDateInput.value,
     endDate: endDateInput.value,
