@@ -21,18 +21,28 @@ const timeUnitSelect = document.getElementById("selectUnits");
 // Event functions tab 1
 startDateInput.addEventListener("input", () => {
   const startDateValue = new Date(startDateInput.value);
-  endDateInput.removeAttribute("disabled");
-  console.log(startDateValue);
-});
+  const endDateValue = new Date(endDateInput.value);
 
-startDateInput.addEventListener("input", () => {
-  const startDateValue = startDateInput.value;
-  endDateInput.min = startDateValue;
+  endDateInput.min = startDateInput.value;
+
+  if (startDateValue > endDateValue) {
+    startDateInput.value = endDateInput.value;
+  }
+
+  endDateInput.removeAttribute("disabled");
 });
 
 endDateInput.addEventListener("input", () => {
+  const startDateValue = new Date(startDateInput.value);
   const endDateValue = new Date(endDateInput.value);
-  console.log(endDateValue);
+
+  startDateInput.max = endDateInput.value;
+
+  if (endDateValue < startDateValue) {
+    endDateInput.value = startDateInput.value;
+  }
+
+  countButton.removeAttribute("disabled");
 });
 
 presetButtons.forEach((button) => {
@@ -189,9 +199,15 @@ countButton.addEventListener("click", calculateTimeInterval);
 
 function storeResult(resultObject) {
   let results = JSON.parse(localStorage.getItem("results")) || [];
+
+  if (results.length >= 10) {
+    results.shift();
+  }
+
   results.push(resultObject);
   localStorage.setItem("results", JSON.stringify(results));
 }
+
 
 // Tab 2
 import { getCountries, getHolidays } from "./apiModule.js";
@@ -216,13 +232,15 @@ const displayHolidaysList = (holidays, sortOrder = "asc") => {
     holidays.sort((a, b) => new Date(b.date.iso) - new Date(a.date.iso));
   }
 
-  if (holidays && holidays.length > 0) {
+ if (holidays && holidays.length > 0) {
     holidays.forEach((holiday) => {
       const listItem = document.createElement("li");
       listItem.classList.add("result-history--holidays-list");
 
+      const date = new Date(holiday.date.iso);
+      const dateString = date.toISOString().split("T")[0];
       const dateSpan = document.createElement("span");
-      dateSpan.textContent = holiday.date.iso;
+      dateSpan.textContent = dateString;
       listItem.appendChild(dateSpan);
 
       const nameSpan = document.createElement("span");

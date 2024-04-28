@@ -186,6 +186,21 @@ li {
   margin-top: 1.5rem;
 }
 
+.count__button[disabled] {
+    cursor: auto;
+    background-color: #CCC;
+    border: #CCC;
+
+}
+
+.count__button:not([disabled]) {
+    cursor: pointer;
+    background-color: var(--primary);
+    border: var(--primary);
+
+}
+
+
 @media screen and (max-width: 600px) {
   .tabs-content {
     padding: 1.5rem;
